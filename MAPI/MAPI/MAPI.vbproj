@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{49C2B5B9-033A-4DA9-9300-88C349F3B8C7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>MAPI.My.MyApplication</StartupObject>
+    <RootNamespace>MAPI</RootNamespace>
+    <AssemblyName>MAPI</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>MAPI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>MAPI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\AgregarArticuloForm.Designer.vb">
+      <DependentUpon>AgregarArticuloForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgregarArticuloForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgregarBitacoraForm.Designer.vb">
+      <DependentUpon>AgregarBitacoraForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgregarBitacoraForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgregarCarroForm.Designer.vb">
+      <DependentUpon>AgregarCarroForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgregarCarroForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgregarClienteForm.Designer.vb">
+      <DependentUpon>AgregarClienteForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgregarClienteForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgregarDistribuidorForm.Designer.vb">
+      <DependentUpon>AgregarDistribuidorForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgregarDistribuidorForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuscarCarroForm.Designer.vb">
+      <DependentUpon>BuscarCarroForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuscarCarroForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuscarClienteForm.Designer.vb">
+      <DependentUpon>BuscarClienteForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuscarClienteForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuscarDistribuidorForm.Designer.vb">
+      <DependentUpon>BuscarDistribuidorForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BuscarDistribuidorForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CarrosForm.Designer.vb">
+      <DependentUpon>CarrosForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CarrosForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ClientesForm.Designer.vb">
+      <DependentUpon>ClientesForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ClientesForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\DBMngr.vb" />
+    <Compile Include="Forms\DistribuidoresForm.Designer.vb">
+      <DependentUpon>DistribuidoresForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DistribuidoresForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistorialForm.Designer.vb">
+      <DependentUpon>HistorialForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HistorialForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IncludeSparesForm.Designer.vb">
+      <DependentUpon>IncludeSparesForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IncludeSparesForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InventarioForm.Designer.vb">
+      <DependentUpon>InventarioForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InventarioForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceForm.Designer.vb">
+      <DependentUpon>InvoiceForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InvoiceForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAPI_DBDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MAPI_DBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Forms\TalleresForm.Designer.vb">
+      <DependentUpon>TalleresForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TalleresForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\AgregarArticuloForm.resx">
+      <DependentUpon>AgregarArticuloForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AgregarBitacoraForm.resx">
+      <DependentUpon>AgregarBitacoraForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AgregarCarroForm.resx">
+      <DependentUpon>AgregarCarroForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AgregarClienteForm.resx">
+      <DependentUpon>AgregarClienteForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AgregarDistribuidorForm.resx">
+      <DependentUpon>AgregarDistribuidorForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuscarCarroForm.resx">
+      <DependentUpon>BuscarCarroForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuscarClienteForm.resx">
+      <DependentUpon>BuscarClienteForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuscarDistribuidorForm.resx">
+      <DependentUpon>BuscarDistribuidorForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CarrosForm.resx">
+      <DependentUpon>CarrosForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ClientesForm.resx">
+      <DependentUpon>ClientesForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DistribuidoresForm.resx">
+      <DependentUpon>DistribuidoresForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistorialForm.resx">
+      <DependentUpon>HistorialForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IncludeSparesForm.resx">
+      <DependentUpon>IncludeSparesForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InventarioForm.resx">
+      <DependentUpon>InventarioForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InvoiceForm.resx">
+      <DependentUpon>InvoiceForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TalleresForm.resx">
+      <DependentUpon>TalleresForm.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MAPI_DBDataSet.xsc">
+      <DependentUpon>MAPI_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MAPI_DBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MAPI_DBDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MAPI_DBDataSet.xss">
+      <DependentUpon>MAPI_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MAPI_DB.accdb" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
