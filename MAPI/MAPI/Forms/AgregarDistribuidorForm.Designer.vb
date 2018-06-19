@@ -154,7 +154,7 @@ Partial Class AgregarDistribuidorForm
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(121, 42)
         Me.BtnCancelar.TabIndex = 15
-        Me.BtnCancelar.Text = "Cancelar"
+        Me.BtnCancelar.Text = "Atras"
         Me.BtnCancelar.UseVisualStyleBackColor = True
         '
         'MetDistTextBox

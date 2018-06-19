@@ -8,6 +8,7 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Hide()
+        clearForm()
         HistorialForm.Show()
     End Sub
 
@@ -20,10 +21,11 @@
 
                 If quant - Convert.ToInt32(QuantTextBox.Text) > 0 Then
                     If codeBinn IsNot "" Then
-                        DBMngr.Instance.insertInDB("INTO tblBinnacleJunction (BinnacleCode,SpareCode) VALUES ('" &
+                        DBMngr.Instance.insertInDB("INTO tblBinnacleJunction (BinnacleCode,SpareCode,Quantity) VALUES ('" &
                                        codeBinn & "', '" &
-                                       RepCodeTextBox.Text & "');")
-                        RepsTextBox.Text += code & " " & QuantTextBox.Text & "\n"
+                                       RepCodeTextBox.Text & "'," &
+                                       QuantTextBox.Text & ");")
+                        RepsTextBox.Text += "Codigo: " & code & " " & "  Cantidad: " & QuantTextBox.Text & Environment.NewLine
                         RepCodeTextBox.Text = ""
                         QuantTextBox.Text = ""
                     Else
@@ -37,5 +39,14 @@
                 MessageBox.Show("Error encontrando el elemento.", "Oops!")
             End Try
         End If
+    End Sub
+
+
+    Private Sub clearForm()
+        For Each child As Control In Me.Controls
+            If (TypeOf child Is TextBox) Then
+                child.ResetText()
+            End If
+        Next
     End Sub
 End Class

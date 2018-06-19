@@ -1,5 +1,6 @@
 ﻿Public Class AgregarCarroForm
     Private Sub BtnAtras_Click(sender As Object, e As EventArgs) Handles BtnAtras.Click
+        clearForm()
         Me.Hide()
         CarrosForm.Show()
     End Sub

@@ -923,6 +923,8 @@ Partial Public Class MAPI_DBDataSet
         
         Private columnQuantity As Global.System.Data.DataColumn
         
+        Private columnId As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -983,6 +985,14 @@ Partial Public Class MAPI_DBDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property IdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnId
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1021,7 +1031,7 @@ Partial Public Class MAPI_DBDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overloads Function AddtblBinnacleJunctionRow(ByVal parenttblBinnacleRowBytblBinnacletblBinnacleJunction As tblBinnacleRow, ByVal parenttblSpareRowBytblSparetblBinnacleJunction As tblSpareRow, ByVal Quantity As Integer) As tblBinnacleJunctionRow
             Dim rowtblBinnacleJunctionRow As tblBinnacleJunctionRow = CType(Me.NewRow,tblBinnacleJunctionRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Quantity}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Quantity, Nothing}
             If (Not (parenttblBinnacleRowBytblBinnacletblBinnacleJunction) Is Nothing) Then
                 columnValuesArray(0) = parenttblBinnacleRowBytblBinnacletblBinnacleJunction(0)
             End If
@@ -1035,8 +1045,8 @@ Partial Public Class MAPI_DBDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByBinnacleCodeSpareCode(ByVal BinnacleCode As String, ByVal SpareCode As String) As tblBinnacleJunctionRow
-            Return CType(Me.Rows.Find(New Object() {BinnacleCode, SpareCode}),tblBinnacleJunctionRow)
+        Public Function FindById(ByVal Id As Integer) As tblBinnacleJunctionRow
+            Return CType(Me.Rows.Find(New Object() {Id}),tblBinnacleJunctionRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1059,6 +1069,7 @@ Partial Public Class MAPI_DBDataSet
             Me.columnBinnacleCode = MyBase.Columns("BinnacleCode")
             Me.columnSpareCode = MyBase.Columns("SpareCode")
             Me.columnQuantity = MyBase.Columns("Quantity")
+            Me.columnId = MyBase.Columns("Id")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1070,11 +1081,16 @@ Partial Public Class MAPI_DBDataSet
             MyBase.Columns.Add(Me.columnSpareCode)
             Me.columnQuantity = New Global.System.Data.DataColumn("Quantity", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQuantity)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnBinnacleCode, Me.columnSpareCode}, true))
-            Me.columnBinnacleCode.AllowDBNull = false
+            Me.columnId = New Global.System.Data.DataColumn("Id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnId)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId}, true))
             Me.columnBinnacleCode.MaxLength = 255
-            Me.columnSpareCode.AllowDBNull = false
             Me.columnSpareCode.MaxLength = 255
+            Me.columnId.AutoIncrement = true
+            Me.columnId.AutoIncrementSeed = -1
+            Me.columnId.AutoIncrementStep = -1
+            Me.columnId.AllowDBNull = false
+            Me.columnId.Unique = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3457,7 +3473,11 @@ Partial Public Class MAPI_DBDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property BinnacleCode() As String
             Get
-                Return CType(Me(Me.tabletblBinnacleJunction.BinnacleCodeColumn),String)
+                Try 
+                    Return CType(Me(Me.tabletblBinnacleJunction.BinnacleCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BinnacleCode' in table 'tblBinnacleJunction' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tabletblBinnacleJunction.BinnacleCodeColumn) = value
@@ -3468,7 +3488,11 @@ Partial Public Class MAPI_DBDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property SpareCode() As String
             Get
-                Return CType(Me(Me.tabletblBinnacleJunction.SpareCodeColumn),String)
+                Try 
+                    Return CType(Me(Me.tabletblBinnacleJunction.SpareCodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SpareCode' in table 'tblBinnacleJunction' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tabletblBinnacleJunction.SpareCodeColumn) = value
@@ -3487,6 +3511,17 @@ Partial Public Class MAPI_DBDataSet
             End Get
             Set
                 Me(Me.tabletblBinnacleJunction.QuantityColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Id() As Integer
+            Get
+                Return CType(Me(Me.tabletblBinnacleJunction.IdColumn),Integer)
+            End Get
+            Set
+                Me(Me.tabletblBinnacleJunction.IdColumn) = value
             End Set
         End Property
         
@@ -3511,6 +3546,30 @@ Partial Public Class MAPI_DBDataSet
                 Me.SetParentRow(value, Me.Table.ParentRelations("tblSparetblBinnacleJunction"))
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBinnacleCodeNull() As Boolean
+            Return Me.IsNull(Me.tabletblBinnacleJunction.BinnacleCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBinnacleCodeNull()
+            Me(Me.tabletblBinnacleJunction.BinnacleCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSpareCodeNull() As Boolean
+            Return Me.IsNull(Me.tabletblBinnacleJunction.SpareCodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSpareCodeNull()
+            Me(Me.tabletblBinnacleJunction.SpareCodeColumn) = Global.System.Convert.DBNull
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -5527,16 +5586,21 @@ Namespace MAPI_DBDataSetTableAdapters
             tableMapping.ColumnMappings.Add("BinnacleCode", "BinnacleCode")
             tableMapping.ColumnMappings.Add("SpareCode", "SpareCode")
             tableMapping.ColumnMappings.Add("Quantity", "Quantity")
+            tableMapping.ColumnMappings.Add("Id", "Id")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `tblBinnacleJunction` WHERE ((`BinnacleCode` = ?) AND (`SpareCode` = "& _ 
-                "?) AND ((? = 1 AND `Quantity` IS NULL) OR (`Quantity` = ?)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM `tblBinnacleJunction` WHERE (((? = 1 AND `BinnacleCode` IS NULL) OR ("& _ 
+                "`BinnacleCode` = ?)) AND ((? = 1 AND `SpareCode` IS NULL) OR (`SpareCode` = ?)) "& _ 
+                "AND ((? = 1 AND `Quantity` IS NULL) OR (`Quantity` = ?)) AND (`Id` = ?))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_BinnacleCode", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "BinnacleCode", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_BinnacleCode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "BinnacleCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SpareCode", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SpareCode", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SpareCode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SpareCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Id", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `tblBinnacleJunction` (`BinnacleCode`, `SpareCode`, `Quantity`) VALUE"& _ 
@@ -5548,16 +5612,20 @@ Namespace MAPI_DBDataSetTableAdapters
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `tblBinnacleJunction` SET `BinnacleCode` = ?, `SpareCode` = ?, `Quantity` "& _ 
-                "= ? WHERE ((`BinnacleCode` = ?) AND (`SpareCode` = ?) AND ((? = 1 AND `Quantity`"& _ 
-                " IS NULL) OR (`Quantity` = ?)))"
+                "= ? WHERE (((? = 1 AND `BinnacleCode` IS NULL) OR (`BinnacleCode` = ?)) AND ((? "& _ 
+                "= 1 AND `SpareCode` IS NULL) OR (`SpareCode` = ?)) AND ((? = 1 AND `Quantity` IS"& _ 
+                " NULL) OR (`Quantity` = ?)) AND (`Id` = ?))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("BinnacleCode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "BinnacleCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SpareCode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SpareCode", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_BinnacleCode", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "BinnacleCode", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_BinnacleCode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "BinnacleCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SpareCode", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SpareCode", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SpareCode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SpareCode", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Id", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5573,7 +5641,7 @@ Namespace MAPI_DBDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT BinnacleCode, SpareCode, Quantity FROM tblBinnacleJunction"
+            Me._commandCollection(0).CommandText = "SELECT BinnacleCode, SpareCode, Quantity, Id FROM tblBinnacleJunction"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -5633,24 +5701,27 @@ Namespace MAPI_DBDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_BinnacleCode As String, ByVal Original_SpareCode As String, ByVal Original_Quantity As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_BinnacleCode As String, ByVal Original_SpareCode As String, ByVal Original_Quantity As Global.System.Nullable(Of Integer), ByVal Original_Id As Integer) As Integer
             If (Original_BinnacleCode Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_BinnacleCode")
             Else
-                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_BinnacleCode,String)
+                Me.Adapter.DeleteCommand.Parameters(0).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_BinnacleCode,String)
             End If
             If (Original_SpareCode Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_SpareCode")
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_SpareCode,String)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_SpareCode,String)
             End If
             If (Original_Quantity.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_Quantity.Value,Integer)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Quantity.Value,Integer)
             Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5705,7 +5776,7 @@ Namespace MAPI_DBDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal BinnacleCode As String, ByVal SpareCode As String, ByVal Quantity As Global.System.Nullable(Of Integer), ByVal Original_BinnacleCode As String, ByVal Original_SpareCode As String, ByVal Original_Quantity As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function Update(ByVal BinnacleCode As String, ByVal SpareCode As String, ByVal Quantity As Global.System.Nullable(Of Integer), ByVal Original_BinnacleCode As String, ByVal Original_SpareCode As String, ByVal Original_Quantity As Global.System.Nullable(Of Integer), ByVal Original_Id As Integer) As Integer
             If (BinnacleCode Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("BinnacleCode")
             Else
@@ -5724,20 +5795,23 @@ Namespace MAPI_DBDataSetTableAdapters
             If (Original_BinnacleCode Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_BinnacleCode")
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_BinnacleCode,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Original_BinnacleCode,String)
             End If
             If (Original_SpareCode Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_SpareCode")
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Original_SpareCode,String)
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_SpareCode,String)
             End If
             If (Original_Quantity.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_Quantity.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_Quantity.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5751,14 +5825,6 @@ Namespace MAPI_DBDataSetTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Quantity As Global.System.Nullable(Of Integer), ByVal Original_BinnacleCode As String, ByVal Original_SpareCode As String, ByVal Original_Quantity As Global.System.Nullable(Of Integer)) As Integer
-            Return Me.Update(Original_BinnacleCode, Original_SpareCode, Quantity, Original_BinnacleCode, Original_SpareCode, Original_Quantity)
         End Function
     End Class
     

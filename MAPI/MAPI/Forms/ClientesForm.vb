@@ -1,6 +1,7 @@
 ﻿Public Class ClientesForm
     Private Sub BuscarBtn_Click(sender As Object, e As EventArgs) Handles BuscarBtn.Click
         Me.Hide()
+        BuscarClienteForm.updateForm()
         BuscarClienteForm.Show()
     End Sub
 

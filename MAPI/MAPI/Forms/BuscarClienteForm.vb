@@ -38,7 +38,6 @@
             PhoneTextBox.ReadOnly = False
             CellphoneTextBox.ReadOnly = False
             DirectionTextBox.ReadOnly = False
-            BtnCarros.Visible = False
             BtnActualizar.Visible = False
             BtnAtras.Visible = False
             BtnEliminar.Visible = False
@@ -58,7 +57,6 @@
         PhoneTextBox.ReadOnly = True
         CellphoneTextBox.ReadOnly = True
         DirectionTextBox.ReadOnly = True
-        BtnCarros.Visible = True
         BtnActualizar.Visible = True
         BtnAtras.Visible = True
         BtnEliminar.Visible = True
@@ -91,4 +89,10 @@
             End If
         Next
     End Sub
+
+    Public Sub updateForm()
+        Dim selection = dbMngr.selectFromDB("FullName FROM tblClient")
+        ComboBox1.DataSource = selection
+    End Sub
+
 End Class

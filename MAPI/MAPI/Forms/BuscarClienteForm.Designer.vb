@@ -40,7 +40,6 @@ Partial Class BuscarClienteForm
         Me.BtnActualizar = New System.Windows.Forms.Button()
         Me.BtnEliminar = New System.Windows.Forms.Button()
         Me.BtnAtras = New System.Windows.Forms.Button()
-        Me.BtnCarros = New System.Windows.Forms.Button()
         Me.btnDondeUpdate = New System.Windows.Forms.Button()
         DirectionLabel = New System.Windows.Forms.Label()
         CellphoneNumberLabel = New System.Windows.Forms.Label()
@@ -203,15 +202,6 @@ Partial Class BuscarClienteForm
         Me.BtnAtras.Text = "Atras"
         Me.BtnAtras.UseVisualStyleBackColor = True
         '
-        'BtnCarros
-        '
-        Me.BtnCarros.Location = New System.Drawing.Point(90, 331)
-        Me.BtnCarros.Name = "BtnCarros"
-        Me.BtnCarros.Size = New System.Drawing.Size(288, 58)
-        Me.BtnCarros.TabIndex = 35
-        Me.BtnCarros.Text = "Vehiculos Asociados"
-        Me.BtnCarros.UseVisualStyleBackColor = True
-        '
         'btnDondeUpdate
         '
         Me.btnDondeUpdate.Location = New System.Drawing.Point(470, 389)
@@ -228,7 +218,6 @@ Partial Class BuscarClienteForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.btnDondeUpdate)
-        Me.Controls.Add(Me.BtnCarros)
         Me.Controls.Add(Me.BtnAtras)
         Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.BtnActualizar)
@@ -266,6 +255,5 @@ Partial Class BuscarClienteForm
     Friend WithEvents BtnActualizar As Button
     Friend WithEvents BtnEliminar As Button
     Friend WithEvents BtnAtras As Button
-    Friend WithEvents BtnCarros As Button
     Friend WithEvents btnDondeUpdate As Button
 End Class

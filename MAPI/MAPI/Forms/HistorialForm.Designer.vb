@@ -45,7 +45,7 @@ Partial Class HistorialForm
         Me.btnFacturar = New System.Windows.Forms.Button()
         Me.Facturado = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnAgregarRep = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'BtnAgregar
@@ -252,21 +252,22 @@ Partial Class HistorialForm
         Me.CheckBox1.UseVisualStyleBackColor = True
         Me.CheckBox1.Visible = False
         '
-        'Button1
+        'btnAgregarRep
         '
-        Me.Button1.Location = New System.Drawing.Point(528, 316)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(200, 53)
-        Me.Button1.TabIndex = 43
-        Me.Button1.Text = "AgregarRepuestos"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnAgregarRep.Location = New System.Drawing.Point(528, 316)
+        Me.btnAgregarRep.Name = "btnAgregarRep"
+        Me.btnAgregarRep.Size = New System.Drawing.Size(200, 53)
+        Me.btnAgregarRep.TabIndex = 43
+        Me.btnAgregarRep.Text = "AgregarRepuestos"
+        Me.btnAgregarRep.UseVisualStyleBackColor = True
+        Me.btnAgregarRep.Visible = False
         '
         'HistorialForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnAgregarRep)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Facturado)
         Me.Controls.Add(Me.btnFacturar)
@@ -319,5 +320,5 @@ Partial Class HistorialForm
     Friend WithEvents btnFacturar As Button
     Friend WithEvents Facturado As Label
     Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnAgregarRep As Button
 End Class

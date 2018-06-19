@@ -6,6 +6,7 @@
     End Sub
 
     Private Sub CancelarBtn_Click(sender As Object, e As EventArgs) Handles CancelarBtn.Click
+        clearForm()
         Me.Hide()
         ClientesForm.Show()
     End Sub

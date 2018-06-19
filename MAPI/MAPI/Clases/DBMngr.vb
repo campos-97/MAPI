@@ -39,7 +39,6 @@ Public NotInheritable Class DBMngr
         Try
             Dim rdrOLEDB As OleDbDataReader = cmdOLEDB.ExecuteReader
 
-
             If rdrOLEDB.HasRows Then
                 Do While rdrOLEDB.Read()
                     For i As Integer = 0 To rdrOLEDB.FieldCount - 1 Step 1

@@ -19,6 +19,7 @@
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        RepTextBox.Text = ""
         Dim selection = DBMngr.Instance.selectFromDB("* FROM tblBinnacle WHERE Code='" & ComboBox1.Text & "'")
         Dim selection2 = DBMngr.Instance.selectFromDB("SpareCode,Quantity FROM tblBinnacleJunction WHERE BinnacleCode='" & ComboBox1.Text & "'")
         Try
@@ -30,13 +31,35 @@
             TipoServTextBox.Text = selection.Item(5)
             PlacaTextBox.Text = selection.Item(6)
 
-            Console.WriteLine("Mierda: " & selection.Item(7))
-
             If selection.Item(7).Equals("False") Then
                 btnFacturar.Visible = True
+                btnAgregarRep.Visible = True
+            Else
+                btnFacturar.Visible = False
+                btnAgregarRep.Visible = False
             End If
+
+            Try
+                If selection2.Count() > 0 Then
+                    Dim q As New Boolean
+                    q = False
+                    For i As Integer = 0 To selection2.Count() - 1 Step 1
+                        If Not q Then
+                            RepTextBox.Text += "Codigo: " & selection2.Item(i) & " "
+                            q = True
+                        Else
+                            RepTextBox.Text += "Cantidad: " & selection2.Item(i) & Environment.NewLine
+                            q = False
+                        End If
+                    Next
+                End If
+            Catch exc As Exception
+
+            End Try
+
+
         Catch ex As Exception
-            MessageBox.Show("Error encontrando el elemento.", "Oops!")
+                MessageBox.Show("Error encontrando el elemento.", "Oops!")
         End Try
     End Sub
 
@@ -50,6 +73,7 @@
                                        PlacaTextBox.Text & "'," &
                                        getPartsCost() & "," &
                                        getTimeCost() & ");")
+        btnAgregarRep.Visible = False
         btnFacturar.Visible = False
         Facturado.Visible = True
         CheckBox1.Select()
@@ -57,17 +81,26 @@
     End Sub
 
     Private Function getPartsCost()
-        Dim cost As New Int16
-        Dim prices = RepTextBox.Text.Split("\n")
-        For i As Integer = 0 To prices.Length - 1 Step 1
-            Dim prices2 = prices.ElementAt(i).Split(" ")
-            Try
-                Dim spareCost = DBMngr.Instance.selectFromDB("Cost FROM tblSpare WHERE Code='" & prices2.ElementAt(0) & "'").Item(0)
-                cost += Integer.Parse(spareCost)
-            Catch ex As Exception
-            End Try
-
-        Next
+        Dim cost As New Decimal
+        Dim selection2 = DBMngr.Instance.selectFromDB("SpareCode,Quantity FROM tblBinnacleJunction WHERE BinnacleCode='" & ComboBox1.Text & "'")
+        Try
+            If selection2.Count() > 0 Then
+                RepTextBox.Text += ""
+                Dim q As New Boolean
+                q = False
+                Dim pc As Decimal
+                For i As Integer = 0 To selection2.Count() - 1 Step 1
+                    If Not q Then
+                        pc = Convert.ToDecimal(DBMngr.Instance.selectFromDB("Cost FROM tblSpare WHERE Code='" & selection2.Item(0) & "'").Item(0))
+                        q = True
+                    Else
+                        cost = pc * Convert.ToDecimal(selection2.Item(i))
+                        q = False
+                    End If
+                Next
+            End If
+        Catch exc As Exception
+        End Try
         Return cost
     End Function
 
@@ -77,7 +110,7 @@
         Return hours * 10
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnAgregarRep.Click
         Me.Hide()
         IncludeSparesForm.codeBinn = CodeBinnTextBox.Text
         IncludeSparesForm.Show()

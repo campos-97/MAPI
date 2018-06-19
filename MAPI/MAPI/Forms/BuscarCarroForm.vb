@@ -3,12 +3,13 @@
         Me.CenterToScreen()
         Dim comboOptions As New List(Of String)
         comboOptions.Add("VIN")
-        comboOptions.Add("Placa")
+        comboOptions.Add("Plate")
         ComboBox1.DataSource = comboOptions
     End Sub
 
     Private Sub BtnAtras_Click(sender As Object, e As EventArgs) Handles BtnAtras.Click
         Me.Hide()
+        clearForm()
         CarrosForm.Show()
     End Sub
 

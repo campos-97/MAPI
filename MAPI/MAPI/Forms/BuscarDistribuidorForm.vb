@@ -1,6 +1,7 @@
 ﻿Public Class BuscarDistribuidorForm
     Private Sub BtnAtras_Click(sender As Object, e As EventArgs) Handles BtnAtras.Click
         Me.Hide()
+        clearForm()
         DistribuidoresForm.Show()
     End Sub
 
